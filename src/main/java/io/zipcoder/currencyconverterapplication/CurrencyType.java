@@ -25,6 +25,11 @@ public enum CurrencyType {
     }
 
     public static CurrencyType getTypeOfCurrency(ConvertableCurrency currency) {
+
+        for (CurrencyType type : UNIVERSAL_CURRENCY.getClass().getEnumConstants()) {
+            if (UNIVERSAL_CURRENCY.getRate().equals(currency.convert(type))) {
+                return type; }
+        }
         return null;
     }
 }

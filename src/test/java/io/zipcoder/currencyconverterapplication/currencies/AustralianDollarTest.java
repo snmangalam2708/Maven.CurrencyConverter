@@ -1,11 +1,14 @@
 package io.zipcoder.currencyconverterapplication.currencies;
 
 import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
+import io.zipcoder.currencyconverterapplication.CurrencyConverter;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AustralianDollarTest implements CurrencyTestInterface {
+public class AustralianDollarTest {
+
     /**
      * template method to be called by other test methods
      * @param currencyType type of currency to convert to
@@ -19,7 +22,7 @@ public class AustralianDollarTest implements CurrencyTestInterface {
         Double actual = currency.convert(currencyType);
 
         // then
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual, .0001);
     }
 
 

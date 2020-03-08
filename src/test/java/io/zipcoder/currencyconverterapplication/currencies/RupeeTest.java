@@ -1,6 +1,7 @@
 package io.zipcoder.currencyconverterapplication.currencies;
 
 import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
+import io.zipcoder.currencyconverterapplication.CurrencyConverter;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,24 +9,32 @@ import org.junit.Test;
 public class RupeeTest {
     /**
      * template method to be called by other test methods
-     *
-     * @param currencyType type of currency to convert to
-     * @param expected     rate to expect
+     * @param amountOfBaseCurrency - amount of the base currency to be converted
+     * @param targetCurrency - enumeration of the target currency type
+     * @param expected - expected amount in target current
      */
-    private void testConversion(CurrencyType currencyType, Double expected) {
+    private void testConversion(Double amountOfBaseCurrency, CurrencyType targetCurrency, Double expected) {
         // given
-        ConvertableCurrency currency = new Rupee();
+        ConvertableCurrency sourceCurrency = new Rupee();
 
         // when
-        Double actual = currency.convert(currencyType);
+        Double actual = CurrencyConverter.convert(amountOfBaseCurrency, sourceCurrency, targetCurrency);
 
         // then
         Assert.assertEquals(expected, actual, .0001);
     }
 
+    /**
+     * template method to be called by other test methods
+     * @param targetCurrency type of currency to convert to
+     * @param expected rate to expect
+     */
+    private void testConversion(CurrencyType targetCurrency, Double expected) {
+        testConversion(1.0, targetCurrency, expected);
+    }
+
     @Test
-    public void testRupeeConversion() {
-        testConversion(CurrencyType.RUPEE, 1.0);
+    public void testRupeeConversion() { testConversion(CurrencyType.RUPEE, 1.0);
     }
 
     @Test
